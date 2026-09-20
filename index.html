@@ -68,6 +68,13 @@
     padding: 0 28px;
   }
 
+  .wrap,
+  .row,
+  .hero-inner,
+  .cine-copy {
+    min-width: 0;
+  }
+
   /* ========== NAV ========== */
   nav {
     position: sticky;
@@ -679,6 +686,14 @@
 
   /* Responsive */
   @media (max-width: 900px) {
+    .hero {
+      min-height: max(680px, 100svh);
+    }
+
+    .hero-inner {
+      padding-bottom: 72px;
+    }
+
     .intro-grid {
       grid-template-columns: 1fr;
       gap: 32px;
@@ -711,6 +726,23 @@
     .cine-track {
       height: 220vh;
     }
+
+    .cine-copy {
+      padding-bottom: 64px;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .work-item {
+      gap: 28px;
+    }
+
+    .frame-inner,
+    .work-item.reverse .frame-inner {
+      transform: none;
+    }
   }
 
   @media (max-width: 600px) {
@@ -718,9 +750,57 @@
       padding: 0 20px;
     }
 
+    nav {
+      padding-bottom: 12px;
+    }
+
+    nav .row {
+      gap: 12px;
+    }
+
+    .brand {
+      font-size: 0.98rem;
+      min-width: 0;
+    }
+
+    .navcta {
+      padding: 8px 12px;
+      font-size: 0.78rem;
+    }
+
+    .hero {
+      min-height: max(620px, 92svh);
+      padding-top: 20px;
+    }
+
+    .hero-eyebrow {
+      align-items: flex-start;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      margin-bottom: 22px;
+    }
+
+    .hero-eyebrow::before {
+      flex: 0 0 22px;
+      margin-top: 0.65em;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.45rem, 12vw, 3.5rem);
+      max-width: 12ch;
+    }
+
+    .hero-sub {
+      margin-top: 22px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
     .hero-actions {
       flex-direction: column;
       align-items: flex-start;
+      gap: 10px;
+      margin-top: 30px;
     }
 
     .btn {
@@ -732,61 +812,88 @@
       gap: 32px;
     }
 
-    .contact-row {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
     .cine-track {
       height: 180vh;
     }
 
+    .cine-copy {
+      padding: 0 20px 48px;
+    }
+
+    .cine-eyebrow {
+      font-size: 0.78rem;
+    }
+
     .cine-row {
-      gap: 10px;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .cine-name {
+      font-size: clamp(1.75rem, 9vw, 2.6rem);
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+
+    .cine-progress {
+      margin-top: 20px;
+      max-width: 220px;
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section h2 {
+      max-width: 16ch;
+    }
+
+    .work-item {
+      padding: 40px 0;
+    }
+
+    .work-name {
+      font-size: 1.8rem;
+    }
+
+    .work-desc,
+    .process-desc,
+    .contact-line {
+      font-size: 0.98rem;
     }
 
     .frame-body {
-      height: 220px;
+      height: min(58vw, 240px);
+      min-height: 180px;
     }
 
-    nav .row {
-      gap: 10px;
+    .frame-caption {
+      left: 14px;
+      bottom: 14px;
+      font-size: 1.25rem;
     }
 
-    .navcta {
-      padding: 8px 13px;
-      font-size: 0.8rem;
+    .process-row {
+      grid-template-columns: 38px 1fr;
+      gap: 10px 14px;
+      padding: 24px 0;
     }
 
-    .brand {
-      font-size: 1rem;
-    }
-  }
-
-  @media (max-width: 380px) {
-    .wrap {
-      padding: 0 16px;
+    .process-title {
+      font-size: 1.15rem;
     }
 
-    .navcta {
-      display: none;
+    .process-row > .process-desc {
+      grid-column: 2 / 3;
     }
-  }
 
-  /* No real hover (touch) — the 3D tilt on project frames only resets on
-     hover, so on touch it would otherwise sit permanently skewed. */
-  @media (hover: none) {
-    .frame-inner {
-      transform: none !important;
+    .contact-row .btn {
+      width: 100%;
     }
-  }
 
-  @supports (height: 100svh) {
-    .hero {
-      min-height: 100svh;
-    }
-    .cine-sticky {
-      height: 100svh;
+    footer .row {
+      align-items: flex-start;
+      flex-direction: column;
     }
   }
 
@@ -902,7 +1009,8 @@
             <span class="frame-url">vexora-designs.vercel.app</span>
           </div>
           <div class="frame-body">
-            <div class="frame-caption" style="position:static; background:linear-gradient(135deg,#123330,#1A403C); height:100%; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding-left:24px;">VEXORA<small>Studio site</small></div>
+            <img class="frame-image" src="Screenshot 2026-09-20 115904.png" alt="VEXORA studio homepage mockup">
+            <div class="frame-caption">VEXORA<small>Studio site</small></div>
           </div>
         </div>
       </div>
@@ -925,7 +1033,8 @@
             <span class="frame-url">mahbeauty.vercel.app</span>
           </div>
           <div class="frame-body">
-            <div class="frame-caption" style="position:static; background:linear-gradient(135deg,#3A2233,#5C2E3E); height:100%; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding-left:24px;">MahBeauty<small>Beauty & cosmetics</small></div>
+            <img class="frame-image" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80" alt="MahBeauty beauty retail storefront mockup">
+            <div class="frame-caption">MahBeauty<small>Beauty & cosmetics</small></div>
           </div>
         </div>
       </div>
@@ -948,7 +1057,8 @@
             <span class="frame-url">matching-nu-nine.vercel.app</span>
           </div>
           <div class="frame-body">
-            <div class="frame-caption" style="position:static; background:linear-gradient(135deg,#1E2A3A,#25405C); height:100%; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding-left:24px;">Matching<small>Marketplace</small></div>
+            <img class="frame-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Matching platform dashboard mockup">
+            <div class="frame-caption">Matching<small>Marketplace</small></div>
           </div>
         </div>
       </div>
@@ -971,7 +1081,8 @@
             <span class="frame-url">what-now-orpin.vercel.app</span>
           </div>
           <div class="frame-body">
-            <div class="frame-caption" style="position:static; background:linear-gradient(135deg,#2A2216,#5C4321); height:100%; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding-left:24px;">What Now<small>Decision app</small></div>
+            <img class="frame-image" src="Screenshot 2026-09-20 120031.png" alt="What Now app interface mockup">
+            <div class="frame-caption">What Now<small>Decision app</small></div>
           </div>
         </div>
       </div>
@@ -1039,7 +1150,7 @@
   camera.position.set(0, 0.2, 9.5);
 
   var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 700 ? 1.5 : 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   function resize(){
     var w = canvas.clientWidth, h = canvas.clientHeight;
@@ -1054,8 +1165,7 @@
   var accent = new THREE.Color(0xE07A3D);
   var muted = new THREE.Color(0x4A4A55);
   var panels = [];
-  var isMobile = window.innerWidth < 700;
-  var count = isMobile ? 5 : 8;
+  var count = 8;
 
   // A luminous wireframe knot gives the hero a clear 3D focal point.
   var focalGroup = new THREE.Group();
@@ -1063,21 +1173,20 @@
   scene.add(focalGroup);
 
   var knot = new THREE.Mesh(
-    new THREE.TorusKnotGeometry(1.15, 0.28, isMobile ? 64 : 128, isMobile ? 10 : 18, 2, 3),
+    new THREE.TorusKnotGeometry(1.15, 0.28, 128, 18, 2, 3),
     new THREE.MeshBasicMaterial({ color: 0xE07A3D, wireframe: true, transparent: true, opacity: 0.72 })
   );
   focalGroup.add(knot);
 
   var knotCore = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(0.82, isMobile ? 1 : 2),
+    new THREE.IcosahedronGeometry(0.82, 2),
     new THREE.MeshBasicMaterial({ color: 0xF0A06A, wireframe: true, transparent: true, opacity: 0.12 })
   );
   focalGroup.add(knotCore);
 
   var particleGeometry = new THREE.BufferGeometry();
-  var particleCount = isMobile ? 50 : 120;
-  var particlePositions = new Float32Array(particleCount * 3);
-  for(var particleIndex = 0; particleIndex < particleCount; particleIndex++){
+  var particlePositions = new Float32Array(120 * 3);
+  for(var particleIndex = 0; particleIndex < 120; particleIndex++){
     particlePositions[particleIndex * 3] = (Math.random() - 0.5) * 8;
     particlePositions[particleIndex * 3 + 1] = (Math.random() - 0.5) * 5;
     particlePositions[particleIndex * 3 + 2] = -1 - Math.random() * 4;
@@ -1163,16 +1272,9 @@
 
   var clock = new THREE.Clock();
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var heroVisible = true;
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(entries){
-      heroVisible = entries[0].isIntersecting;
-    }, { threshold: 0 }).observe(canvas);
-  }
 
   function animate(){
     requestAnimationFrame(animate);
-    if(!heroVisible) return;
     var t = clock.getElapsedTime();
 
     if(!reduceMotion){
@@ -1232,10 +1334,10 @@
   if(!canvas || typeof THREE === 'undefined') return;
 
   var STOPS = [
-    { name: 'VEXORA Designs', a: '#E07A3D', b: '#141416', label: 'Studio site' },
-    { name: 'MahBeauty',      a: '#E07A9A', b: '#1F1520', label: 'E-commerce concept' },
-    { name: 'Matching',       a: '#5BA3D9', b: '#121820', label: 'Marketplace layout' },
-    { name: 'What Now',       a: '#E0B04A', b: '#1A1610', label: 'Mobile-first app' }
+    { name: 'VEXORA Designs', a: '#E07A3D', b: '#141416', label: 'Studio site', image: 'Screenshot 2026-09-20 115904.png' },
+    { name: 'MahBeauty',      a: '#E07A9A', b: '#1F1520', label: 'E-commerce concept', image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80' },
+    { name: 'Matching',       a: '#5BA3D9', b: '#121820', label: 'Marketplace layout', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80' },
+    { name: 'What Now',       a: '#E0B04A', b: '#1A1610', label: 'Mobile-first app', image: 'Screenshot 2026-09-20 120031.png' }
   ];
 
   var scene = new THREE.Scene();
@@ -1243,7 +1345,7 @@
   camera.position.set(0, 0, 6.4);
 
   var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 700 ? 1.5 : 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   function makeTexture(stop){
     var c = document.createElement('canvas');
@@ -1278,13 +1380,54 @@
     var tex = new THREE.CanvasTexture(c);
     tex.anisotropy = 4;
 
-    ctx.fillStyle = 'rgba(255,255,255,0.96)';
-    ctx.font = '700 64px "Playfair Display", Georgia, serif';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(stop.name, 56, c.height / 2 - 8);
-    ctx.fillStyle = stop.a;
-    ctx.font = '500 26px "Outfit", system-ui, sans-serif';
-    ctx.fillText(stop.label, 58, c.height / 2 + 52);
+    if(stop.image){
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function(){
+        ctx.save();
+        ctx.fillStyle = stop.b;
+        ctx.fillRect(0, 0, c.width, c.height);
+        var scale = Math.max(c.width / img.width, c.height / img.height);
+        var iw = img.width * scale;
+        var ih = img.height * scale;
+        var x = (c.width - iw) / 2;
+        var y = (c.height - ih) / 2;
+        ctx.filter = 'saturate(1.15) contrast(1.08) brightness(0.82)';
+        ctx.drawImage(img, x, y, iw, ih);
+        ctx.filter = 'none';
+        ctx.fillStyle = 'rgba(0,0,0,0.25)';
+        ctx.fillRect(0, 0, c.width, c.height);
+        ctx.restore();
+
+        ctx.save();
+        ctx.globalAlpha = 0.12;
+        ctx.fillStyle = stop.a;
+        ctx.translate(c.width * 0.72, 0);
+        ctx.rotate(0.32);
+        ctx.fillRect(-220, -120, 360, c.height * 2.2);
+        ctx.restore();
+
+        ctx.fillStyle = 'rgba(255,255,255,0.96)';
+        ctx.font = '700 64px "Playfair Display", Georgia, serif';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(stop.name, 56, c.height / 2 - 8);
+
+        ctx.fillStyle = stop.a;
+        ctx.font = '500 26px "Outfit", system-ui, sans-serif';
+        ctx.fillText(stop.label, 58, c.height / 2 + 52);
+
+        tex.needsUpdate = true;
+      };
+      img.src = stop.image;
+    } else {
+      ctx.fillStyle = 'rgba(255,255,255,0.96)';
+      ctx.font = '700 64px "Playfair Display", Georgia, serif';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(stop.name, 56, c.height / 2 - 8);
+      ctx.fillStyle = stop.a;
+      ctx.font = '500 26px "Outfit", system-ui, sans-serif';
+      ctx.fillText(stop.label, 58, c.height / 2 + 52);
+    }
 
     return tex;
   }
