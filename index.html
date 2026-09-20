@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VEXORA DESIGNS — Web design studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0C0C0E;
+    --surface: #161618;
+    --surface-2: #1E1E22;
+    --line: #2A2A30;
+    --text: #F4F1EA;
+    --muted: #9A968C;
+    --accent: #E07A3D;
+    --accent-soft: rgba(224, 122, 61, 0.15);
+    --accent-2: #F0A06A;
+    --radius-s: 6px;
+    --radius-m: 14px;
+    --radius-l: 20px;
+    --shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+  }
+
+  html {
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+    scroll-behavior: smooth;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .wrap {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ========== NAV ========== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding-top: calc(16px + env(safe-area-inset-top, 0px));
+    padding-bottom: 16px;
+    background: linear-gradient(to bottom, rgba(12,12,14,0.92) 0%, rgba(12,12,14,0.7) 70%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  nav .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .brand-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  nav .links {
+    display: flex;
+    gap: 32px;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+
+  nav .links a {
+    transition: color 0.2s ease;
+  }
+
+  nav .links a:hover {
+    color: var(--text);
+  }
+
+  .navcta {
+    border: 1px solid var(--line);
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    color: var(--text);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .navcta:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding-top: 40px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 68% 30%, rgba(224,122,61,0.16), transparent 28%),
+      radial-gradient(circle at 25% 18%, rgba(255,255,255,0.05), transparent 30%),
+      linear-gradient(120deg, rgba(12,12,14,1) 0%, rgba(16,15,18,1) 35%, rgba(10,10,12,1) 100%);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 82px 82px;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 10% 0 0 50%;
+    background: linear-gradient(90deg, transparent 0%, rgba(224,122,61,0.1) 45%, rgba(224,122,61,0.02) 100%);
+    transform: skewX(-18deg);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    pointer-events: none;
+    transform: translateZ(0);
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(224,122,61,0.08) 0%, transparent 60%),
+                linear-gradient(to top, var(--bg) 0%, transparent 45%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 90px;
+    width: 100%;
+    transform: translateZ(0);
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 5.8vw, 4.6rem);
+    max-width: 16ch;
+    margin-bottom: 0;
+    text-wrap: balance;
+    animation: hero-rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .hero-sub {
+    margin-top: 28px;
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 48ch;
+    line-height: 1.7;
+    animation: hero-rise 1s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 42px;
+    flex-wrap: wrap;
+    animation: hero-rise 1s 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes hero-rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: var(--radius-s);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0C0C0E;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -8px rgba(224,122,61,0.45);
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--line);
+    color: var(--text);
+    background: transparent;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--text);
+    transform: translateY(-2px);
+  }
+
+  /* ========== CINEMATIC ========== */
+  .cine-track {
+    position: relative;
+    height: 420vh;
+  }
+
+  .cine-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  #cine-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cine-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--bg) 0%, transparent 15%, transparent 85%, var(--bg) 100%);
+    pointer-events: none;
+  }
+
+  .cine-copy {
+    position: relative;
+    z-index: 2;
+    padding: 0 28px 80px;
+  }
+
+  .cine-eyebrow {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    letter-spacing: 0.03em;
+  }
+
+  .cine-row {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .cine-index {
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+    font-size: 1.05rem;
+  }
+
+  .cine-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    letter-spacing: -0.02em;
+  }
+
+  .cine-progress {
+    display: flex;
+    gap: 8px;
+    margin-top: 28px;
+    max-width: 280px;
+  }
+
+  .cine-progress span {
+    height: 3px;
+    flex: 1;
+    background: var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .cine-progress span i {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    width: 0%;
+    display: block;
+    transition: width 0.1s linear;
+  }
+
+  /* ========== SECTIONS ========== */
+  .section {
+    padding: 120px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .kicker {
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section h2 {
+    font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+    max-width: 18ch;
+  }
+
+  /* Intro */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 70px;
+    align-items: start;
+  }
+
+  .intro-grid p {
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.75;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 48px;
+    margin-top: 42px;
+    flex-wrap: wrap;
+  }
+
+  .stat b {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .stat span {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  /* Work */
+  .work-item {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 60px;
+    align-items: center;
+    padding: 64px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .work-item:first-of-type {
+    padding-top: 12px;
+  }
+
+  .work-item:last-of-type {
+    border-bottom: none;
+  }
+
+  .work-item.reverse {
+    direction: rtl;
+  }
+
+  .work-item.reverse > * {
+    direction: ltr;
+  }
+
+  .work-name {
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    margin-bottom: 14px;
+  }
+
+  .work-desc {
+    color: var(--muted);
+    max-width: 42ch;
+    margin-bottom: 22px;
+    font-size: 1.02rem;
+  }
+
+  .work-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .tag {
+    font-size: 0.78rem;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    padding: 5px 12px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+
+  .work-link {
+    font-size: 0.95rem;
+    color: var(--text);
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 0.2s ease;
+  }
+
+  .work-link:hover {
+    color: var(--accent);
+  }
+
+  /* Browser frame */
+  .frame {
+    perspective: 1400px;
+    transform-style: preserve-3d;
+  }
+
+  .frame-inner {
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    transform: rotateY(-9deg) rotateX(4deg);
+    transition: transform 0.16s ease-out, box-shadow 0.45s ease;
+    box-shadow: var(--shadow);
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .work-item.reverse .frame-inner {
+    transform: rotateY(9deg) rotateX(4deg);
+  }
+
+  .frame:hover .frame-inner {
+    transform: rotateY(0deg) rotateX(0deg);
+    box-shadow: 0 35px 70px -15px rgba(0,0,0,0.65);
+  }
+
+  .frame-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 14px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--line);
+  }
+
+  .dot:nth-child(1) { background: #FF5F57; }
+  .dot:nth-child(2) { background: #FEBC2E; }
+  .dot:nth-child(3) { background: #28C840; }
+
+  .frame-url {
+    margin-left: 10px;
+    font-size: 0.74rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+  }
+
+  .frame-body {
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .frame-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.05) contrast(1.06) brightness(0.8);
+    transform: scale(1.02);
+  }
+
+  .frame-body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(12,12,14,0.08) 0%, rgba(12,12,14,0.46) 100%);
+    pointer-events: none;
+  }
+
+  .frame-caption {
+    position: absolute;
+    left: 20px;
+    bottom: 18px;
+    z-index: 1;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.96);
+    letter-spacing: -0.01em;
+  }
+
+  .frame-caption small {
+    display: block;
+    margin-top: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.72);
+    text-transform: uppercase;
+  }
+
+  /* Process */
+  .process-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .process-row {
+    display: grid;
+    grid-template-columns: 64px 1fr 2.2fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+    transition: background 0.2s ease;
+  }
+
+  .process-row:first-child {
+    border-top: 1px solid var(--line);
+  }
+
+  .process-num {
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+    font-size: 1.15rem;
+  }
+
+  .process-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .process-desc {
+    color: var(--muted);
+    max-width: 52ch;
+    font-size: 1.02rem;
+  }
+
+  /* Contact */
+  .contact {
+    text-align: left;
+  }
+
+  .contact h2 {
+    max-width: 14ch;
+    margin-bottom: 28px;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .contact-line {
+    color: var(--muted);
+    margin-top: 28px;
+    max-width: 50ch;
+    font-size: 1.02rem;
+  }
+
+  .contact-sign {
+    margin-top: 8px;
+    color: var(--text);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 36px 0 calc(36px + env(safe-area-inset-bottom, 0px));
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  footer .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    width: 100%;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .intro-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .work-item,
+    .work-item.reverse {
+      grid-template-columns: 1fr;
+      direction: ltr;
+      gap: 32px;
+    }
+
+    .work-item {
+      padding: 48px 0;
+    }
+
+    .process-row {
+      grid-template-columns: 48px 1fr;
+      gap: 16px 24px;
+    }
+
+    .process-row > .process-desc {
+      grid-column: 2 / 3;
+    }
+
+    nav .links {
+      display: none;
+    }
+
+    .cine-track {
+      height: 220vh;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .wrap {
+      padding: 0 20px;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .stat-row {
+      gap: 32px;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    #hero-canvas,
+    #cine-canvas {
+      display: none;
+    }
+    .frame-inner {
+      transition: none;
+      transform: none !important;
+    }
+    .hero h1,
+    .hero-sub,
+    .hero-actions {
+      animation: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap row">
+    <div class="brand">VEXORA<span class="brand-dot"></span>DESIGNS</div>
+    <div class="links">
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="navcta" href="#contact">Start a project</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-gradient"></div>
+  <div class="wrap hero-inner">
+    <p class="hero-eyebrow">One-person web design studio · Sindh, Pakistan</p>
+    <h1>I build the site that brings them back.</h1>
+    <p class="hero-sub">Fast, clean websites for restaurants, salons, tailors and retailers who need a better online presence — from first sketch to live launch.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#work">See the work</a>
+      <a class="btn btn-ghost" href="#contact">Start a project</a>
+    </div>
+  </div>
+</section>
+
+<section class="cine-track" id="cine">
+  <div class="cine-sticky">
+    <canvas id="cine-canvas"></canvas>
+    <div class="cine-fade"></div>
+    <div class="wrap cine-copy">
+      <p class="cine-eyebrow">Scroll to look around the work</p>
+      <div class="cine-row">
+        <span class="cine-index" id="cine-index">01</span>
+        <span class="cine-name" id="cine-name">VEXORA Designs</span>
+      </div>
+      <div class="cine-progress" id="cine-progress">
+        <span><i data-i="0"></i></span>
+        <span><i data-i="1"></i></span>
+        <span><i data-i="2"></i></span>
+        <span><i data-i="3"></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap intro-grid">
+    <div>
+      <p class="kicker">About the studio</p>
+      <h2>Every project here is a real build, not a template.</h2>
+    </div>
+    <div>
+      <p>I design and code each site myself — layout, content structure and the final build — so a client gets something made for their business, not a theme with their name swapped in. The work below is a mix of personal builds and early client concepts, used to test layouts before they go live for a business.</p>
+      <div class="stat-row">
+        <div class="stat"><b>4</b><span>sites shipped</span></div>
+        <div class="stat"><b>2</b><span>cities served</span></div>
+        <div class="stat"><b>1</b><span>person, start to finish</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <p class="kicker">Selected work</p>
+    <h2 style="margin-bottom: 56px;">A few of the sites built so far.</h2>
+
+    <div class="work-item">
+      <div>
+        <h3 class="work-name">VEXORA Designs</h3>
+        <p class="work-desc">The studio’s own site — where the look and structure used across client projects gets tried out first.</p>
+        <div class="work-tags">
+          <span class="tag">Studio site</span>
+          <span class="tag">Next.js</span>
+        </div>
+        <a class="work-link" href="https://vexora-designs.vercel.app" target="_blank" rel="noopener">Visit site →</a>
+      </div>
+      <div class="frame">
+        <div class="frame-inner">
+          <div class="frame-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="frame-url">vexora-designs.vercel.app</span>
+          </div>
+          <div class="frame-body">
+            <img class="frame-image" src="Screenshot 2026-09-20 115904.png" alt="VEXORA studio homepage mockup">
+            <div class="frame-caption">VEXORA<small>Studio site</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-item reverse">
+      <div>
+        <h3 class="work-name">MahBeauty</h3>
+        <p class="work-desc">A storefront concept for a beauty and cosmetics brand — built to show how a small retailer’s products can feel premium online.</p>
+        <div class="work-tags">
+          <span class="tag">E-commerce concept</span>
+          <span class="tag">Retail</span>
+        </div>
+        <a class="work-link" href="https://mahbeauty.vercel.app" target="_blank" rel="noopener">Visit site →</a>
+      </div>
+      <div class="frame">
+        <div class="frame-inner">
+          <div class="frame-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="frame-url">mahbeauty.vercel.app</span>
+          </div>
+          <div class="frame-body">
+            <img class="frame-image" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80" alt="MahBeauty beauty retail storefront mockup">
+            <div class="frame-caption">MahBeauty<small>Beauty & cosmetics</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-item">
+      <div>
+        <h3 class="work-name">Matching</h3>
+        <p class="work-desc">A matching-platform layout, built to test how a browse-and-connect experience holds up on a small business budget.</p>
+        <div class="work-tags">
+          <span class="tag">Web app</span>
+          <span class="tag">Marketplace layout</span>
+        </div>
+        <a class="work-link" href="https://matching-nu-nine.vercel.app" target="_blank" rel="noopener">Visit site →</a>
+      </div>
+      <div class="frame">
+        <div class="frame-inner">
+          <div class="frame-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="frame-url">matching-nu-nine.vercel.app</span>
+          </div>
+          <div class="frame-body">
+            <img class="frame-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Matching platform dashboard mockup">
+            <div class="frame-caption">Matching<small>Marketplace</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-item reverse">
+      <div>
+        <h3 class="work-name">What Now</h3>
+        <p class="work-desc">A lightweight decision-making app — simple in, simple out, built to be fast on low-end phones and slow connections.</p>
+        <div class="work-tags">
+          <span class="tag">Web app</span>
+          <span class="tag">Mobile-first</span>
+        </div>
+        <a class="work-link" href="https://what-now-orpin.vercel.app" target="_blank" rel="noopener">Visit site →</a>
+      </div>
+      <div class="frame">
+        <div class="frame-inner">
+          <div class="frame-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="frame-url">what-now-orpin.vercel.app</span>
+          </div>
+          <div class="frame-body">
+            <img class="frame-image" src="Screenshot 2026-09-20 120031.png" alt="What Now app interface mockup">
+            <div class="frame-caption">What Now<small>Decision app</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="process">
+  <div class="wrap">
+    <p class="kicker">How a project runs</p>
+    <h2 style="margin-bottom: 48px;">Four steps, no surprises.</h2>
+    <div class="process-list">
+      <div class="process-row">
+        <div class="process-num">01</div>
+        <div class="process-title">Discover</div>
+        <div class="process-desc">A short call or WhatsApp chat about the business — what it sells, who it’s for, and what the site needs to do.</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">02</div>
+        <div class="process-title">Design</div>
+        <div class="process-desc">A first look at layout and content within a few days, built around the business’s own photos and details.</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">03</div>
+        <div class="process-title">Build</div>
+        <div class="process-desc">A fast, mobile-first site — the version most customers will actually open on their phone.</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">04</div>
+        <div class="process-title">Launch</div>
+        <div class="process-desc">The site goes live and gets handed over, with a plain explanation of how to update it later.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <p class="kicker">Get in touch</p>
+    <h2>Have a business without a website yet?</h2>
+    <div class="contact-row">
+      <a class="btn btn-primary" href="https://wa.me/93776995101" target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-ghost" href="mailto:mahd62215@gmail.com">mahd62215@gmail.com</a>
+    </div>
+    <p class="contact-line">Based in Sindh, working with businesses across Hyderabad and Karachi — open to projects anywhere.</p>
+    <p class="contact-sign">— Mahdi, founder of VEXORA DESIGNS</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap row">
+    <span>VEXORA DESIGNS — Mahdi</span>
+    <span>Web design, built one site at a time.</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var canvas = document.getElementById('hero-canvas');
+  if(!canvas || typeof THREE === 'undefined') return;
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(48, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+  camera.position.set(0, 0.2, 9.5);
+
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  function resize(){
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+
+  var group = new THREE.Group();
+  scene.add(group);
+
+  var accent = new THREE.Color(0xE07A3D);
+  var muted = new THREE.Color(0x4A4A55);
+  var panels = [];
+  var count = 8;
+
+  // A luminous wireframe knot gives the hero a clear 3D focal point.
+  var focalGroup = new THREE.Group();
+  focalGroup.position.set(2.5, 0.15, -0.5);
+  scene.add(focalGroup);
+
+  var knot = new THREE.Mesh(
+    new THREE.TorusKnotGeometry(1.15, 0.28, 128, 18, 2, 3),
+    new THREE.MeshBasicMaterial({ color: 0xE07A3D, wireframe: true, transparent: true, opacity: 0.72 })
+  );
+  focalGroup.add(knot);
+
+  var knotCore = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(0.82, 2),
+    new THREE.MeshBasicMaterial({ color: 0xF0A06A, wireframe: true, transparent: true, opacity: 0.12 })
+  );
+  focalGroup.add(knotCore);
+
+  var particleGeometry = new THREE.BufferGeometry();
+  var particlePositions = new Float32Array(120 * 3);
+  for(var particleIndex = 0; particleIndex < 120; particleIndex++){
+    particlePositions[particleIndex * 3] = (Math.random() - 0.5) * 8;
+    particlePositions[particleIndex * 3 + 1] = (Math.random() - 0.5) * 5;
+    particlePositions[particleIndex * 3 + 2] = -1 - Math.random() * 4;
+  }
+  particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+  var particles = new THREE.Points(
+    particleGeometry,
+    new THREE.PointsMaterial({ color: 0xF0A06A, size: 0.018, transparent: true, opacity: 0.55 })
+  );
+  scene.add(particles);
+
+  for(var i = 0; i < count; i++){
+    var w = 1.9 + Math.random() * 1.5;
+    var h = w * 0.62;
+    var geo = new THREE.PlaneGeometry(w, h);
+    var edges = new THREE.EdgesGeometry(geo);
+    var isAccent = i === 3;
+    var color = isAccent ? accent : muted;
+    var mat = new THREE.LineBasicMaterial({
+      color: color,
+      transparent: true,
+      opacity: isAccent ? 0.95 : 0.45
+    });
+    var line = new THREE.LineSegments(edges, mat);
+
+    var angle = (i / count) * Math.PI * 2;
+    var radius = 3.4 + (i % 3) * 0.7;
+    line.position.set(
+      Math.cos(angle) * radius * 0.8,
+      Math.sin(angle * 1.25) * 1.9,
+      -1.8 - (i % 4) * 1.15
+    );
+    line.rotation.set(
+      (Math.random() - 0.5) * 0.35,
+      (Math.random() - 0.5) * 0.55,
+      (Math.random() - 0.5) * 0.12
+    );
+    line.userData.baseRot = line.rotation.clone();
+    line.userData.speed = 0.04 + Math.random() * 0.07;
+    line.userData.offset = Math.random() * Math.PI * 2;
+
+    group.add(line);
+    panels.push(line);
+
+    // window control dots
+    var dotGeo = new THREE.CircleGeometry(0.032, 12);
+    var dotMat = new THREE.MeshBasicMaterial({
+      color: color,
+      transparent: true,
+      opacity: isAccent ? 0.9 : 0.35
+    });
+    for(var d = 0; d < 3; d++){
+      var dot = new THREE.Mesh(dotGeo, dotMat);
+      dot.position.set(-w/2 + 0.14 + d * 0.11, h/2 - 0.14, 0.01);
+      line.add(dot);
+    }
+  }
+
+  // soft ambient glow plane behind
+  var glowGeo = new THREE.PlaneGeometry(18, 12);
+  var glowMat = new THREE.MeshBasicMaterial({
+    color: 0xE07A3D,
+    transparent: true,
+    opacity: 0.03,
+    side: THREE.DoubleSide
+  });
+  var glow = new THREE.Mesh(glowGeo, glowMat);
+  glow.position.z = -6;
+  scene.add(glow);
+
+  var mouseX = 0, mouseY = 0;
+  var targetX = 0, targetY = 0;
+  window.addEventListener('mousemove', function(e){
+    targetX = (e.clientX / window.innerWidth - 0.5);
+    targetY = (e.clientY / window.innerHeight - 0.5);
+  });
+
+  window.addEventListener('scroll', function(){
+    var progress = Math.min(1, window.scrollY / Math.max(window.innerHeight, 1));
+    focalGroup.position.y = 0.15 + progress * 1.4;
+    focalGroup.scale.setScalar(1 - progress * 0.14);
+  }, { passive: true });
+
+  var clock = new THREE.Clock();
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animate(){
+    requestAnimationFrame(animate);
+    var t = clock.getElapsedTime();
+
+    if(!reduceMotion){
+      mouseX += (targetX - mouseX) * 0.04;
+      mouseY += (targetY - mouseY) * 0.04;
+      panels.forEach(function(p){
+        p.rotation.x = p.userData.baseRot.x + Math.sin(t * p.userData.speed + p.userData.offset) * 0.11;
+        p.rotation.y = p.userData.baseRot.y + Math.cos(t * p.userData.speed * 0.85 + p.userData.offset) * 0.14;
+        p.position.y += Math.sin(t * 0.35 + p.userData.offset) * 0.0008;
+      });
+      group.rotation.y += (mouseX * 0.28 - group.rotation.y) * 0.025;
+      group.rotation.x += (mouseY * 0.14 - group.rotation.x) * 0.025;
+      focalGroup.rotation.x += (mouseY * 0.45 - focalGroup.rotation.x) * 0.035;
+      focalGroup.rotation.y += (mouseX * 0.7 - focalGroup.rotation.y) * 0.035;
+      knot.rotation.z += 0.003;
+      knotCore.rotation.y -= 0.005;
+      particles.rotation.y += 0.0005;
+    }
+
+    renderer.render(scene, camera);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  animate();
+})();
+</script>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion) return;
+
+  document.querySelectorAll('.frame').forEach(function(frame){
+    var inner = frame.querySelector('.frame-inner');
+    if(!inner) return;
+
+    frame.addEventListener('pointermove', function(event){
+      var rect = frame.getBoundingClientRect();
+      var x = (event.clientX - rect.left) / rect.width - 0.5;
+      var y = (event.clientY - rect.top) / rect.height - 0.5;
+      inner.style.transform = 'rotateY(' + (x * 14) + 'deg) rotateX(' + (-y * 12) + 'deg) translateZ(18px)';
+      inner.style.boxShadow = (x * -18) + 'px ' + (y * 22 + 28) + 'px 70px -15px rgba(0,0,0,0.72)';
+    });
+
+    frame.addEventListener('pointerleave', function(){
+      inner.style.transform = '';
+      inner.style.boxShadow = '';
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var canvas = document.getElementById('cine-canvas');
+  if(!canvas || typeof THREE === 'undefined') return;
+
+  var STOPS = [
+    { name: 'VEXORA Designs', a: '#E07A3D', b: '#141416', label: 'Studio site', image: 'Screenshot 2026-09-20 115904.png' },
+    { name: 'MahBeauty',      a: '#E07A9A', b: '#1F1520', label: 'E-commerce concept', image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80' },
+    { name: 'Matching',       a: '#5BA3D9', b: '#121820', label: 'Marketplace layout', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80' },
+    { name: 'What Now',       a: '#E0B04A', b: '#1A1610', label: 'Mobile-first app', image: 'Screenshot 2026-09-20 120031.png' }
+  ];
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(42, 2, 0.1, 100);
+  camera.position.set(0, 0, 6.4);
+
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  function makeTexture(stop){
+    var c = document.createElement('canvas');
+    c.width = 1024;
+    c.height = 640;
+    var ctx = c.getContext('2d');
+
+    // base
+    ctx.fillStyle = stop.b;
+    ctx.fillRect(0, 0, c.width, c.height);
+
+    // soft accent band
+    ctx.save();
+    ctx.globalAlpha = 0.12;
+    ctx.fillStyle = stop.a;
+    ctx.translate(c.width * 0.72, 0);
+    ctx.rotate(0.32);
+    ctx.fillRect(-220, -120, 360, c.height * 2.2);
+    ctx.restore();
+
+    // traffic lights
+    var colors = ['#FF5F57', '#FEBC2E', '#28C840'];
+    for(var i = 0; i < 3; i++){
+      ctx.beginPath();
+      ctx.fillStyle = colors[i];
+      ctx.globalAlpha = 0.9;
+      ctx.arc(52 + i * 36, 46, 10, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    var tex = new THREE.CanvasTexture(c);
+    tex.anisotropy = 4;
+
+    if(stop.image){
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function(){
+        ctx.save();
+        ctx.fillStyle = stop.b;
+        ctx.fillRect(0, 0, c.width, c.height);
+        var scale = Math.max(c.width / img.width, c.height / img.height);
+        var iw = img.width * scale;
+        var ih = img.height * scale;
+        var x = (c.width - iw) / 2;
+        var y = (c.height - ih) / 2;
+        ctx.filter = 'saturate(1.15) contrast(1.08) brightness(0.82)';
+        ctx.drawImage(img, x, y, iw, ih);
+        ctx.filter = 'none';
+        ctx.fillStyle = 'rgba(0,0,0,0.25)';
+        ctx.fillRect(0, 0, c.width, c.height);
+        ctx.restore();
+
+        ctx.save();
+        ctx.globalAlpha = 0.12;
+        ctx.fillStyle = stop.a;
+        ctx.translate(c.width * 0.72, 0);
+        ctx.rotate(0.32);
+        ctx.fillRect(-220, -120, 360, c.height * 2.2);
+        ctx.restore();
+
+        ctx.fillStyle = 'rgba(255,255,255,0.96)';
+        ctx.font = '700 64px "Playfair Display", Georgia, serif';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(stop.name, 56, c.height / 2 - 8);
+
+        ctx.fillStyle = stop.a;
+        ctx.font = '500 26px "Outfit", system-ui, sans-serif';
+        ctx.fillText(stop.label, 58, c.height / 2 + 52);
+
+        tex.needsUpdate = true;
+      };
+      img.src = stop.image;
+    } else {
+      ctx.fillStyle = 'rgba(255,255,255,0.96)';
+      ctx.font = '700 64px "Playfair Display", Georgia, serif';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(stop.name, 56, c.height / 2 - 8);
+      ctx.fillStyle = stop.a;
+      ctx.font = '500 26px "Outfit", system-ui, sans-serif';
+      ctx.fillText(stop.label, 58, c.height / 2 + 52);
+    }
+
+    return tex;
+  }
+
+  var group = new THREE.Group();
+  scene.add(group);
+
+  var w = 3.7, h = 2.3;
+  var screenGeo = new THREE.PlaneGeometry(w, h);
+  var screenMat = new THREE.MeshBasicMaterial({ map: makeTexture(STOPS[0]), transparent: true });
+  var screen = new THREE.Mesh(screenGeo, screenMat);
+  group.add(screen);
+
+  // outer frame
+  var edges = new THREE.EdgesGeometry(new THREE.PlaneGeometry(w + 0.05, h + 0.05));
+  var edgeMat = new THREE.LineBasicMaterial({ color: 0xE07A3D, transparent: true, opacity: 0.7 });
+  var frame = new THREE.LineSegments(edges, edgeMat);
+  frame.position.z = 0.015;
+  group.add(frame);
+
+  // ghost panels for depth
+  var ghosts = [];
+  for(var i = 0; i < 3; i++){
+    var gEdges = new THREE.EdgesGeometry(new THREE.PlaneGeometry(w * 0.78, h * 0.78));
+    var gMat = new THREE.LineBasicMaterial({ color: 0x3A3A44, transparent: true, opacity: 0.35 });
+    var g = new THREE.LineSegments(gEdges, gMat);
+    g.position.set((i - 1) * 1.7, (i - 1) * 0.35, -1.9 - i * 0.65);
+    g.rotation.y = (i - 1) * 0.28;
+    scene.add(g);
+    ghosts.push(g);
+  }
+
+  var textures = STOPS.map(makeTexture);
+  var currentStop = -1;
+
+  function resize(){
+    var rect = canvas.getBoundingClientRect();
+    var ww = rect.width, hh = rect.height;
+    renderer.setSize(ww, hh, false);
+    camera.aspect = ww / (hh || 1);
+    camera.updateProjectionMatrix();
+  }
+
+  var track = document.getElementById('cine');
+  var nameEl = document.getElementById('cine-name');
+  var indexEl = document.getElementById('cine-index');
+  var bars = document.querySelectorAll('#cine-progress i');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function getProgress(){
+    if(!track) return 0;
+    var rect = track.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var total = rect.height - vh;
+    if(total <= 0) return 0;
+    var scrolled = -rect.top;
+    return Math.min(1, Math.max(0, scrolled / total));
+  }
+
+  function update(){
+    var p = getProgress();
+    var stageF = p * (STOPS.length - 1);
+    var stage = Math.floor(stageF);
+    if(stage >= STOPS.length - 1) stage = STOPS.length - 2;
+    var localT = stageF - stage;
+    if(STOPS.length === 1){ stage = 0; localT = 0; }
+
+    // smooth cinematic camera + group movement
+    group.rotation.y = -0.55 + p * 2.2;
+    group.rotation.x = Math.sin(p * Math.PI) * 0.1;
+    camera.position.z = 6.4 - p * 1.0;
+    camera.position.y = -0.25 + p * 0.28;
+
+    ghosts.forEach(function(g, i){
+      g.rotation.y = (i - 1) * 0.28 + p * 1.15;
+    });
+
+    var nearest = localT < 0.5 ? stage : stage + 1;
+    if(nearest !== currentStop && textures[nearest]){
+      currentStop = nearest;
+      screenMat.map = textures[nearest];
+      screenMat.needsUpdate = true;
+      if(nameEl) nameEl.textContent = STOPS[nearest].name;
+      if(indexEl) indexEl.textContent = String(nearest + 1).padStart(2, '0');
+    }
+
+    bars.forEach(function(bar){
+      var idx = parseInt(bar.getAttribute('data-i'), 10);
+      var fill = Math.min(1, Math.max(0, stageF - idx));
+      bar.style.width = (fill * 100) + '%';
+    });
+
+    renderer.render(scene, camera);
+  }
+
+  var ticking = false;
+  function onScroll(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ update(); ticking = false; });
+  }
+
+  resize();
+  update();
+  window.addEventListener('resize', function(){ resize(); update(); });
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+
+</body>
+</html>
